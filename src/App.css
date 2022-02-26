@@ -114,6 +114,29 @@ p {
   letter-spacing: 5px;
 }
 
+.help {
+  position: absolute;
+  top: 0;
+  padding-top: 5%;
+  background-color: #0A1D37;
+  color: white;
+}
+
+.instructions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.help h2 {
+  text-align: center;
+}
+
+.help button {
+  width: 100%;
+  padding: 2%;
+}
+
 @media only screen and (max-width: 992px) {
   .image {
     width: 90%;

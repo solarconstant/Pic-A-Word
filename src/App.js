@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import GetPOSTag from "./functions/GetPOSTag";
 import Modal from "./modal";
+import Help from "./helpmodal";
 import "./App.css";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
   const [correctPos, setCorrectPos] = useState([]);
   const [guesses, setGuesses] = useState([]);
   const [frame, setFrame] = useState();
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const getTodayData = async () => {
     const res = await axios.get(`${process.env.REACT_APP_API}/worddata`);
@@ -72,6 +74,10 @@ const App = () => {
     }
   };
 
+  const handleHelp = () => {
+    setHelpOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     console.log("Ha bhai Hacker? Kya chahiye?");
     getTodayData();
@@ -100,7 +106,13 @@ const App = () => {
       ) : (
         <></>
       )}
+      {helpOpen && <Help handleOpen={handleHelp} />}
       <h1 className="heading">PIC-A-WORD</h1>
+      <div className="instructions">
+        <button className="guess-button" onClick={handleHelp}>
+          Instructions
+        </button>
+      </div>
       <h2 className="heading">Today's Picture</h2>
       <p>The picture will change every two hours.</p>
       <div className="image-holder">
