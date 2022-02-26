@@ -23,7 +23,7 @@ const Modal = ({ status, open, setOpen, todayword, correctPos }) => {
         shareText += "\n";
       }
     }
-    shareText += "Hey! Check out my score on today's Pic-A-Word!";
+    shareText += "Hey! Check out my score on today's Pic-A-Word!\nhttps://pic-a-word.netlify.app";
     window.navigator.clipboard.writeText(shareText);
   };
 
