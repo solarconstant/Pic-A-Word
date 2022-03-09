@@ -1,8 +1,12 @@
+import { useState } from "react";
 import Celebration from "../src/celeb.gif";
 import Sad from "../src/sad.gif";
 
 const Modal = ({ status, open, setOpen, todayword, correctPos }) => {
+  const [share, setShare] = useState(false);
+
   const copyToClipboard = () => {
+    let date = new Date();
     let shareText = "";
     if(correctPos && correctPos.length) {
       for(let i = 0; i < correctPos.length; i++) {
@@ -25,6 +29,18 @@ const Modal = ({ status, open, setOpen, todayword, correctPos }) => {
     }
     shareText += "Hey! Check out my score on today's Pic-A-Word!\nhttps://pic-a-word.netlify.app";
     window.navigator.clipboard.writeText(shareText);
+    setShare(() => true);
+    if(window.navigator.share) {
+      navigator.share(
+        {
+          title: `My Pic-A-Word Score - ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+          text: shareText,
+          url: `https://pic-a-word.netlify.app`
+        }
+      ).then(() => {
+        console.log("shared");
+      })
+    }
   };
 
   return (
@@ -53,6 +69,7 @@ const Modal = ({ status, open, setOpen, todayword, correctPos }) => {
               alt="celebration"
             />
             <p>Share your result</p>
+            {share && <p>Result copied to clipboard</p>}
             <button className="share-button" onClick={copyToClipboard}>
               Share
             </button>
