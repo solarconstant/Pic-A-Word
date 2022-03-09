@@ -27,13 +27,13 @@ const Modal = ({ status, open, setOpen, todayword, correctPos }) => {
         shareText += "\n";
       }
     }
-    shareText += "Hey! Check out my score on today's Pic-A-Word!\nhttps://pic-a-word.netlify.app";
-    window.navigator.clipboard.writeText(shareText);
+    shareText += "Hey! Check out my score on today's Pic-A-Word!";
+    window.navigator.clipboard.writeText(`${shareText}\nhttps://pic-a-word.netlify.app`);
     setShare(() => true);
     if(window.navigator.share) {
       navigator.share(
         {
-          title: `My Pic-A-Word Score - ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+          title: `My Pic-A-Word Score`,
           text: shareText,
           url: `https://pic-a-word.netlify.app`
         }
