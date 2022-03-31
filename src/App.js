@@ -81,7 +81,7 @@ const App = () => {
   useEffect(() => {
     console.log("Ha bhai Hacker? Kya chahiye?");
     getTodayData();
-    setHour(() => Math.floor(new Date().getHours() / 2));
+    setHour(() => Math.min(Math.floor(new Date().getHours() / 2), images.length - 1));
     let postag = GetPOSTag(randomWord);
     if (postag) {
       setPos(() => postag);
